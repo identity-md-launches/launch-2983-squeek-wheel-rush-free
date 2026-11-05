@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0c292b" />
+    <title>Squeek Wheel Rush | Tiny paws. Big scores.</title>
+    <meta name="description" content="Hop over pegs, collect seeds, and take Squeektoshi for a spin. A free browser game with a worldwide leaderboard, made by the Squeekchain community." />
+    <meta property="og:title" content="Squeek Wheel Rush" />
+    <meta property="og:description" content="Tiny paws. Big scores. How long can you keep the wheel turning? Play free and join the worldwide leaderboard." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./share.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <script type="module" crossorigin src="./assets/index-DdClKfMZ.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DHUQGePB.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#start-button">Skip to game</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="./" aria-label="Squeek Wheel Rush home">
+          <img src="./favicon.svg" width="38" height="38" alt="" />
+          <span>Squeek<span class="brand-light"> arcade</span></span>
+        </a>
+        <div class="header-actions">
+          <button id="help-button" class="utility" type="button" aria-label="How to play" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.3 9a2.8 2.8 0 0 1 5.4 1c0 2-2.7 2-2.7 4m0 3h.01"/></svg>
+            <span class="utility-label">How to play</span>
+          </button>
+          <button id="mute-button" class="utility sound-button" type="button" aria-label="Mute sound" aria-pressed="false" title="Mute sound (M)">
+            <svg class="sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="m11 4-5 4H3v8h3l5 4V4ZM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg>
+            <svg class="sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="m11 4-5 4H3v8h3l5 4V4Zm5 5 6 6m0-6-6 6"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section id="game-section" class="game-scene" aria-label="Squeek Wheel Rush game">
+          <canvas id="game-canvas" tabindex="-1" role="img" aria-label="Squeektoshi, an orange hamster, running inside a brass wheel. Start a run, then tap, click, or hold Space to jump over red pegs and collect seeds."></canvas>
+
+          <div id="start-screen" class="intro">
+            <h1>Squeek<br /><span>Wheel Rush</span><svg class="title-spark" viewBox="0 0 40 44" aria-hidden="true"><path d="m19 3 3 13 12 3-12 4-3 15-4-15-11-4 11-3Z"/></svg></h1>
+            <p class="tagline">Tiny paws. Big scores.</p>
+            <div class="start-action">
+              <button id="start-button" class="primary-button" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg>Start running</button>
+              <p class="play-hint">Tap or press <kbd>Space</kbd> to jump.<br />Hold to jump higher.</p>
+            </div>
+            <p class="community-note">A free community game.<br />Not made by the Squeekchain team.</p>
+          </div>
+
+          <div id="hud" class="hud" hidden aria-label="Current run">
+            <div id="score" class="score" aria-label="Score">0</div>
+            <div class="run-meta"><span id="multiplier">x1.0</span><span class="meta-divider" aria-hidden="true"></span><span id="timer">0:00</span></div>
+            <p id="live-bonus" class="live-bonus" hidden>+25% live wheel</p>
+          </div>
+          <div id="idle-best" class="idle-best"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8v7a4 4 0 0 1-8 0V3Zm0 2H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 2v5m-4 2h8"/></svg><span>Personal best <strong id="personal-best">0</strong></span></div>
+
+          <div id="run-controls" class="run-controls" hidden>
+            <button id="pause-button" class="utility" type="button" aria-label="Pause game" title="Pause (Escape)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14m8-14v14"/></svg></button>
+            <span class="desktop-hint">Space to jump · Hold for height</span>
+          </div>
+          <button id="jump-button" class="jump-button" type="button" hidden aria-label="Jump. Hold for a higher jump."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 7-7 7 7m-7-7v15"/></svg><span>Hold to jump</span></button>
+
+          <div id="hamster-status" class="hamster-status" role="status" aria-live="polite"><span class="status-dot" aria-hidden="true"></span><span id="hamster-status-text">Squeektoshi is asleep</span></div>
+
+          <section id="game-over" class="result-panel" aria-labelledby="result-title" hidden>
+            <button id="home-button" class="result-close utility" type="button" aria-label="Back to start"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+            <h2 id="result-title" tabindex="-1">Tripped!</h2>
+            <p class="result-subtitle">A little tumble. A mighty run.</p>
+            <div id="final-score" class="final-score">0</div>
+            <div class="result-stats"><div><span>Time on the wheel</span><strong id="final-time">0:00</strong></div><div><span>Personal best</span><strong id="final-best">0</strong></div></div>
+            <form id="claim-form" class="claim-form" novalidate>
+              <label for="runner-name">Put your name on the board</label>
+              <div class="claim-fields"><input id="runner-name" name="runner" type="text" placeholder="Your runner name" maxlength="14" autocomplete="nickname" aria-describedby="name-hint claim-message" /><button id="claim-button" type="submit" class="secondary-button">Claim score</button></div>
+              <span id="name-hint" class="field-hint">Up to 14 characters. Best score per name.</span>
+              <p id="claim-message" class="claim-message" role="status" aria-live="polite"></p>
+            </form>
+            <button id="again-button" class="primary-button" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a8 8 0 1 1-1 8M5 2v5h5"/></svg>Run again</button>
+          </section>
+
+          <div id="pause-screen" class="pause-screen" hidden><div><h2>Taking a breather.</h2><p>Your score is safe. Ready for another spin?</p><button id="resume-button" class="primary-button" type="button">Keep running</button></div></div>
+        </section>
+
+        <div id="below-game" class="below-game">
+          <section class="leaderboard" aria-labelledby="leaderboard-title">
+            <div class="section-heading"><h2 id="leaderboard-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8v7a4 4 0 0 1-8 0V3Zm0 2H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 2v5m-4 2h8"/></svg>Top runners worldwide</h2><button id="refresh-button" class="utility" type="button" aria-label="Refresh worldwide leaderboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7a8 8 0 1 1-1 8M5 2v5h5"/></svg></button></div>
+            <div id="leaderboard-state" class="leaderboard-state" role="status">Loading the runners…</div>
+            <div id="leaderboard-table" hidden><div class="board-labels" aria-hidden="true"><span>Runner</span><span>Time</span><span>Score</span></div><ol id="leaderboard-list" class="leaderboard-list"></ol></div>
+            <p class="board-caption">One wheel. A whole world of tiny paws.</p>
+          </section>
+          <aside class="field-guide" aria-label="Quick guide">
+            <h2>A good run starts small.</h2>
+            <p>Find your rhythm. The wheel gets faster<br class="desktop-only" /> the longer you last.</p>
+            <div class="collectibles"><div><svg class="seed-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 27C-1 12 18 2 27 5c1 10-8 30-20 22Z"/><path d="M9 24 23 9"/></svg><span>Seeds<strong>25 × multiplier</strong></span></div><div><svg class="star-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="m16 2 4.5 9 10 1.5-7.2 7 1.7 10L16 25l-9 4.5 1.7-10-7.2-7L11.5 11Z"/></svg><span>Gold stars<strong>150 × multiplier</strong></span></div></div>
+            <div class="connection-note"><span id="connection-dot" class="connection-dot" aria-hidden="true"></span><p id="connection-note">Checking the real wheel…</p></div>
+          </aside>
+        </div>
+      </main>
+      <footer><span>Made for the Squeekchain community.</span><span>Free to play. Just one more run.</span></footer>
+    </div>
+
+    <dialog id="help-dialog" aria-labelledby="help-title">
+      <div class="help-top"><h2 id="help-title">Small paws. Simple rules.</h2><button id="close-help" class="utility" type="button" aria-label="Close how to play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button></div>
+      <p>Keep Squeektoshi running inside the wheel for as long as you can.</p>
+      <ul><li><strong>Jump:</strong> tap, click, or press Space, ↑, or W. Hold for a higher jump. Release before the next jump.</li><li><strong>Watch the rim:</strong> hop over red pegs. Tall pegs need a full jump. One trip ends the run.</li><li><strong>Snack as you go:</strong> seeds earn 25 points and rare stars earn 150, times your multiplier.</li><li><strong>Keep going:</strong> earn 10 points a second, times a multiplier that grows from x1.0 to x12.</li><li><strong>Live wheel bonus:</strong> when the real hamster is running, all points earn an extra 25%. The game always works without it.</li></ul>
+      <p class="help-shortcuts">M: mute sound · Escape: pause<br />Best scores stay on this device. Claimed scores join the worldwide board.</p>
+      <button id="got-it-button" class="primary-button" type="button">Got it</button>
+    </dialog>
+  </body>
+</html>

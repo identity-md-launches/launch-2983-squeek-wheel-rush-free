@@ -1,0 +1,22 @@
+{
+  "name": "squeek-wheel-rush",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test test/game.test.mjs",
+    "test:browser": "node test/browser.mjs",
+    "share": "node scripts/share.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/fredoka": "^5.2.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "vite": "^7.1.12"
+  }
+}

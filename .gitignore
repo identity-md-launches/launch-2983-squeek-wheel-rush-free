@@ -1,0 +1,10 @@
+# Explicit Git path budget: source/config/docs/tests <= 450 KiB;
+# dist/ <= 1 MiB, public/ <= 500 KiB, lockfile <= 100 KiB. Total < 8 MiB.
+# These generated paths have a zero-byte submission budget at every depth.
+**/node_modules/
+**/.vite/
+**/.cache/
+**/.npm/
+test/scratch/
+*.tsbuildinfo
+# dist/ is deliberately included: static hosting serves the production export.
